@@ -1,0 +1,21 @@
+ruby_string="jruby-1.6.7"
+gemset_name="jruby_clojure_integration_demo"
+
+# create the gemset if it does not exist
+rvm_gemset_create_on_use_flag=1
+
+# switch to default ruby version when exiting directory
+rvm_project_rvmrc_default=1
+
+# install the requisite ruby if it's not already available
+rvm_install_on_use_flag=1
+
+# Use the specific Ruby and Gemset
+rvm ${ruby_string}@${gemset_name}
+
+# Make sure jrclj gem is available: https://github.com/kyleburton/jrclj
+if [ ! -d "$GEM_HOME/gems/jrclj-"* ]; then
+  gem install jrclj
+fi
+
+export JRUBY_OPTS="--1.9"
