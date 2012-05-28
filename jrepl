@@ -20,5 +20,13 @@ def clj
   @clj
 end
 
+# A little bit of sugar to make dealing with Clojure BigInt easier
+Java::ClojureLang::BigInt.class_eval do
+  def to_i
+    long_value
+  end
+end
+
+
 require "irb"
 IRB.start(__FILE__)
