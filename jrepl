@@ -1,0 +1,24 @@
+#!/usr/bin/env jruby
+require 'rubygems'
+require 'java'
+
+# Require the clojure jars 
+require 'powers_of_two/lib/clojure-1.4.0.jar'
+require 'powers_of_two/lib/clojure-contrib-1.2.0.jar'
+
+# Require the project jar that we want to use
+require 'powers_of_two/powers_of_two-1.0.0-SNAPSHOT.jar'
+
+# Require the jrclj gem that lets us interact with clojure code
+require 'jrclj'
+
+def clj 
+  unless @clj
+    @clj = JRClj.new
+    @clj._import "powers_of_two.core"
+  end
+  @clj
+end
+
+require "irb"
+IRB.start(__FILE__)
